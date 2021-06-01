@@ -17,6 +17,7 @@ use App\Block;
 use App\CampaignBlock;
 use App\TargetOnly;
 use Illuminate\Support\Facades\Request;
+use NumberFormatter;
 
 class CampaignController extends Controller
 {
@@ -135,10 +136,10 @@ class CampaignController extends Controller
         
         //$id = Auth::id();
         //$adcampaigns4 = Adcampaigns4::create(["user_id" > $id]);
-        $formatter = new \NumberFormatter('en_US', \NumberFormatter::CURRENCY);
+        $formatter = new NumberFormatter('en_US', NumberFormatter::CURRENCY);
         $campaign['bid_amount'] = $formatter->formatCurrency((float)($campaign['bid_amount']/100), "USD");
 
-        $campaign['budget_amount'] = \NumberFormatter::formatCurrency("%i", (float)($campaign['budget_amount']/100));
+        $campaign['budget_amount'] = $formatter->formatCurrency((float)($campaign['budget_amount']/100), "USD");
 
         return view('campaigns.settings', compact('campaign'));
     }

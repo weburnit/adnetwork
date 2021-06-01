@@ -5,6 +5,8 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use \Auth;
 use App\User;
+use NumberFormatter;
+
 class UserServiceProvider extends ServiceProvider
 {
     /**
@@ -27,7 +29,7 @@ class UserServiceProvider extends ServiceProvider
             if($user) {
                 //money_format("%i", (float)($campaign['budget_amount']/100));
 
-                $formatter = new \NumberFormatter('en_US', \NumberFormatter::CURRENCY);
+                $formatter = new NumberFormatter('en_US', NumberFormatter::CURRENCY);
                 $publisher_balance = $formatter->formatCurrency( $user->publisher_balance/100, "USD");
                 $advertiser_balance = $formatter->formatCurrency($user->advertiser_balance/100, "USD");
                 //print_r("hello");
