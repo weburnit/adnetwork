@@ -135,9 +135,10 @@ class CampaignController extends Controller
         
         //$id = Auth::id();
         //$adcampaigns4 = Adcampaigns4::create(["user_id" > $id]);
-        $campaign['bid_amount'] = money_format("%i", (float)($campaign['bid_amount']/100));
+        $formatter = new \NumberFormatter('en_US', \NumberFormatter::CURRENCY);
+        $campaign['bid_amount'] = $formatter->formatCurrency((float)($campaign['bid_amount']/100), "USD");
 
-        $campaign['budget_amount'] = money_format("%i", (float)($campaign['budget_amount']/100));
+        $campaign['budget_amount'] = \NumberFormatter::formatCurrency("%i", (float)($campaign['budget_amount']/100));
 
         return view('campaigns.settings', compact('campaign'));
     }

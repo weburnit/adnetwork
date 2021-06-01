@@ -2,12 +2,13 @@
 
 namespace App\Providers;
 
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Schema;
 use \Auth;
 use App\User;
-	
+
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -17,29 +18,30 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        if ($this->app->environment('production')) {
+            URL::forceScheme('https');
+        }
         Schema::defaultStringLength(191);
 
         //
-        $user_id =  Auth::user();
+        $user_id = Auth::user();
         //echo("user id:");
         //print_r($user_id);
         //dd($user_id);
-        if($user_id) {
+        if ($user_id) {
 
-                    $user = User::findOrFail($user_id);
+            $user = User::findOrFail($user_id);
             $publisher_balance = $user->publisher_balance;
             $advertiser_balance = $user->advertiser_balance;
 
 
-        
             // view()->share('advertiser_balance', $advertiser_balance);
             // view()->share('publisher_balance', $publisher_balance);
-        }
-        else {
+        } else {
             //echo("nao");
-    view()->share('advertiser_balance', "");
+            view()->share('advertiser_balance', "");
             view()->share('publisher_balance', "");
-    
+
         }
 
     }
@@ -52,9 +54,9 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
         //
-              //  $user_id =  Auth::user();
+        //  $user_id =  Auth::user();
 
-                //echo($user_id);
+        //echo($user_id);
         if ($this->app->environment() == 'local') {
             $this->app->register('Laracasts\Generators\GeneratorsServiceProvider');
 

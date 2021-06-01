@@ -26,8 +26,10 @@ class UserServiceProvider extends ServiceProvider
             //$user = User::findOrFail($user->id);
             if($user) {
                 //money_format("%i", (float)($campaign['budget_amount']/100));
-                $publisher_balance = money_format("%i", $user->publisher_balance/100);
-                $advertiser_balance = money_format("%i", $user->advertiser_balance/100);
+
+                $formatter = new \NumberFormatter('en_US', \NumberFormatter::CURRENCY);
+                $publisher_balance = $formatter->formatCurrency( $user->publisher_balance/100, "USD");
+                $advertiser_balance = $formatter->formatCurrency($user->advertiser_balance/100, "USD");
                 //print_r("hello");
                 //print_r($advertiser_balance);
                 //$cart = Cart::where('user_id', Auth::user()->id);

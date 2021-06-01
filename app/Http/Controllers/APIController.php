@@ -32,6 +32,7 @@ class APIController extends Controller
         if($saved_api_key != $publisher_api_key) {
             die("key error");
         }
+        $formatter = new \NumberFormatter('en_US', \NumberFormatter::CURRENCY);
     	$reports = DB::table('daily_widget_reports')
                      ->select(DB::raw('report_date, widget_id, widgets.name as widget_name, widgets.site_id as site_id, sites.name as site_name, sites.platform as platform, sum(impressions) as impressions, sum(clicks) as clicks, (round(total_revenue * .70))  revenue'))
                       ->join('widgets', 'widgets.id', '=', 'daily_widget_reports.widget_id')
@@ -52,7 +53,7 @@ class APIController extends Controller
 
                      foreach($reports as $report) {
                         $amount = $report->revenue;
-                        $report->revenue=money_format("%i", $amount/100);
+                        $report->revenue= $formatter->formatCurrency($amount/100, "USD");
                      }
     
 	//    $fp = fopen('file.csv', 'w');
