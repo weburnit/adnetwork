@@ -17,7 +17,7 @@ use App\Block;
 use App\CampaignBlock;
 use App\TargetOnly;
 use Illuminate\Support\Facades\Request;
-use NumberFormatter;
+use \NumberFormatter;
 
 class CampaignController extends Controller
 {

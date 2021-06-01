@@ -5,7 +5,7 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use \Auth;
 use App\User;
-use NumberFormatter;
+use \NumberFormatter;
 
 class UserServiceProvider extends ServiceProvider
 {
