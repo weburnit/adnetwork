@@ -14,9 +14,9 @@
                 <td valign='top' >
 
                     <h3>Advertiser Stats</h3>
-                    <p>Available Balance: <strong>{{ money_format("$%i", $user->advertiser_balance/100)}}</strong></p>
-                    <p>Spend Today: <strong>{{ money_format("$%i", $spent_today/100)}}</strong></p>
-                    <p>Average CTR Today: <strong>{{ number_format($ctr_today, 2) }}%</strong></p>
+                    <p>Available Balance: <strong>{{ $user->advertiser_balance/100}}</strong></p>
+                    <p>Spend Today: <strong>{{ $spent_today/100}}</strong></p>
+                    <p>Average CTR Today: <strong>{{ $ctr_today }}%</strong></p>
                     <p>Ad Clicks Today: <strong>{{ $clicks_today }}</strong></p>
                     <p>Ad Impressions Today: <strong>{{ $impressions_today }}</strong></p>
                     </td>
@@ -25,9 +25,9 @@
                     Publisher Stats
                     </h3>
 
-                    <p>Unpaid Earnings: <strong>{{ money_format("$%i", (($user->publisher_balance)/100) * .7) }}</strong></p>
+                    <p>Unpaid Earnings: <strong>{{ $user->publisher_balance/100 }}</strong></p>
 
-                    <p>Earned Today: <strong>{{ money_format("$%i", $earned_today/100)}}</strong></p>
+                    <p>Earned Today: <strong>{{ $earned_today/100}}</strong></p>
 
 
                     </td>

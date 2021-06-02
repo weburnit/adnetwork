@@ -54,24 +54,24 @@ class SitesController extends Controller
         //                print_r($reports);
 
 
+        $reports = [];
 
-
-        $reports = DB::select(DB::raw("select sites.user_id, sites.name name, sites.platform, sites.url, sites.approval_status, sites.id id, sum(impressions) impressions, sum(clicks) clicks, round(sum(total_cost) * .70) total_cost from `sites` left join `daily_ad_unit_reports` on `sites`.`id` =`daily_ad_unit_reports`.`site_id` where daily_ad_unit_reports.report_date BETWEEN :start AND :end and sites.user_id = :user_id group by `site_id`, sites.name, sites.platform, sites.url, sites.approval_status, sites.id, sites.user_id
-
-union 
-
-select sites.user_id, sites.name name, sites.platform, sites.url, sites.approval_status, sites.id id, sum(impressions) impressions, sum(clicks) clicks, round(sum(total_cost) * .70) total_cost from `sites`  left join `daily_ad_unit_reports` on `sites`.`id` =`daily_ad_unit_reports`.`site_id`  and sites.user_id = 1 group by `site_id`, sites.name, sites.platform, sites.url, sites.approval_status, sites.id, sites.user_id
-having sites.user_id = :user_id_2 and sites.id not in (select sites.id id from `sites` left join `daily_ad_unit_reports` on `sites`.`id` =`daily_ad_unit_reports`.`site_id` where daily_ad_unit_reports.report_date BETWEEN :start_2 AND :end_2 and sites.user_id = :user_id_3 group by `site_id`, sites.name, sites.platform, sites.url, sites.approval_status, sites.id, sites.user_id
-) "), array(
-   'user_id' => $user_id,
-   'start' => $start,
-   'end' => $end,
-    'user_id_2' => $user_id,
-   'start_2' => $start,
-   'end_2' => $end,
-   'user_id_3' => $user_id,
-
- ));
+//        $reports = DB::select(DB::raw("select sites.user_id, sites.name, sites.platform, sites.url, sites.approval_status, sites.id id, sum(impressions) impressions, sum(clicks) clicks, round(sum(total_cost) * .70) total_cost from `sites` left join `daily_ad_unit_reports` on `sites`.`id` =`daily_ad_unit_reports`.`site_id` where daily_ad_unit_reports.report_date BETWEEN :start AND :end and sites.user_id = :user_id group by `site_id`, sites.name, sites.platform, sites.url, sites.approval_status, sites.id, sites.user_id
+//
+//union
+//
+//select sites.user_id, sites.name name, sites.platform, sites.url, sites.approval_status, sites.id id, sum(impressions) impressions, sum(clicks) clicks, round(sum(total_cost) * .70) total_cost from `sites`  left join `daily_ad_unit_reports` on `sites`.`id` =`daily_ad_unit_reports`.`site_id`  and sites.user_id = 1 group by `site_id`, sites.name, sites.platform, sites.url, sites.approval_status, sites.id, sites.user_id
+//having sites.user_id = :user_id_2 and sites.id not in (select sites.id id from `sites` left join `daily_ad_unit_reports` on `sites`.`id` =`daily_ad_unit_reports`.`site_id` where daily_ad_unit_reports.report_date BETWEEN :start_2 AND :end_2 and sites.user_id = :user_id_3 group by `site_id`, sites.name, sites.platform, sites.url, sites.approval_status, sites.id, sites.user_id
+//) "), array(
+//   'user_id' => $user_id,
+//   'start' => $start,
+//   'end' => $end,
+//    'user_id_2' => $user_id,
+//   'start_2' => $start,
+//   'end_2' => $end,
+//   'user_id_3' => $user_id,
+//
+// ));
 
 
         return view('sites.index', compact('sites', 'reports'));

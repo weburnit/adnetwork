@@ -318,7 +318,7 @@ input:checked + .slider:before {
 
 <p>
 Advertiser Balance: ${{ $advertiser_balance }} | 
-Publisher Balance: ${{ money_format("%i", $publisher_balance * .7) }}
+Publisher Balance: ${{ $publisher_balance }}
 </p>
 
 @endif

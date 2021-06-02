@@ -276,7 +276,7 @@ else {
         <td>{{ $report->impressions }} </td>
         <td>{{ $report->clicks }} </td>
         <td><?php if($report->impressions) { echo(number_format($report->clicks /$report->impressions * 100, 3)); } ?>% </td>
-        <td>${{ money_format("%i", $report->total_cost / 100) }} </td>
+        <td>${{ $report->total_cost / 100 }} </td>
 
       </tr>
           @endforeach

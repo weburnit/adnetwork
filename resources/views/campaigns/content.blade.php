@@ -195,13 +195,12 @@ require_once(Config::get('view.paths')[0] . '/datepickerjs.blade.php');
                 </td>
                 <td><?php if($c->clicks == 0) {
                  echo("$");
-                 echo money_format("%i", 0); 
                 }
                 else { ?>
-                  ${{money_format("%i", $c->cost / $c->clicks) }}
+                  ${{$c->cost / $c->clicks}}
                 <?php } ?>
                 </td>
-                <td>${{money_format("%i", $c->cost) }}</td>
+                <td>${{ $c->cost }}</td>
                 <td>{{$c->created_at}}</td>
 
                 <td>

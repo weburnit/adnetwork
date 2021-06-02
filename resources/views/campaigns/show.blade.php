@@ -299,7 +299,7 @@ $('input[name="daterange"]').daterangepicker();
        
         <td>{{ $c->impressions }}</td>
         <td>{{ $c->clicks }}</td>
-        <td>${{ money_format("%i", $c->cost) }}</td>
+        <td>${{ $c->cost }}</td>
 
       </tr>
           @endforeach

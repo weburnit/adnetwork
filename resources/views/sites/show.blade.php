@@ -131,7 +131,7 @@ require_once(Config::get('view.paths')[0] . '/datepickerjs.blade.php');
         <td>{{ $c->report_date }}</td>
         <td>{{ $c->impressions }}</td>
         <td>{{ $c->clicks }}</td>
-        <td>${{ money_format("%i", round(($c->total_cost / 100), 2)) }}</td>
+        <td>${{ round(($c->total_cost / 100), 2) }}</td>
 
 
       </tr>

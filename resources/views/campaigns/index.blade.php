@@ -298,7 +298,7 @@
 
   <!-- {{ $c->enabled }} --></td>
   <td>{{$c->status}}</td>
-  <td>${{ money_format("%i", $c->bid_amount / 100 ) }}</td>
+  <td>${{ $c->bid_amount / 100  }}</td>
   <td> {{ $c->impressions }}</td>
   <td> {{ $c->clicks }}</td>
   <td> <?php if($c->impressions == 0) {
@@ -309,8 +309,8 @@
 
   </td>
 
-  <td>${{ money_format("%i", $c->cost) }}</td>
-  <td>${{ money_format("%i", $c->budget_amount) }}</td>
+  <td>${{ $c->cost }}</td>
+  <td>${{ $c->budget_amount }}</td>
 
 </tr>
 @endforeach
